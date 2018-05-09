@@ -1,0 +1,18 @@
+#contain{
+	width: 500px;	
+	margin: 100 auto;	
+}
+
+.square{
+
+	background: #d3d3d3;
+	float: left;
+	margin: 2px;
+	transition: all linear 300ms;
+	cursor: pointer;
+}
+
+button{
+	display: block;
+	margin: 20px auto;
+}

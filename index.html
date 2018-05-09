@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>Etch</title>
+		<link rel="stylesheet" href='etch.css'>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	</head>
+	<body>
+		<div id="contain" class="text-center">
+			<h1 style="font-family: 'Lobster'">Grid Etch</h1>
+			<div>
+				<button class="btn btn-primary" onclick="reset()" style="margin-bottom: 20px;">Reset</button>	
+			</div>
+			
+		</div>
+
+
+
+		<script>
+			var mainContain = document.getElementById("contain");
+
+			function createGrid(){
+				var sideCount = parseInt(prompt("How many squares per side? (Max of 60)"));
+				if(sideCount > 64){
+					createGrid();
+				}else{
+					var gridTotal = sideCount*sideCount;
+					var gridWidth = Math.floor(480/sideCount);
+					var containerSize = gridWidth*sideCount + ((sideCount - 1)*4) + 4;
+					mainContain.style.width = containerSize+"px";
+					//populating container with grids
+					for(var i = 0; i < gridTotal; i++){
+						var k = document.createElement("div");
+						k.classList.add("square");
+						k.style.width = gridWidth+"px";
+						k.style.height = gridWidth+"px";
+						k.addEventListener("mouseover", function(){
+						this.style.background = randColor();
+					})
+				mainContain.appendChild(k);
+				}
+				
+			}
+			}
+
+			function reset(){
+				var grids = document.querySelectorAll(".square");
+				grids.forEach((element) =>{
+					mainContain.removeChild(element);
+				});
+				createGrid();
+			}
+
+			function randColor(){
+				var a = Math.floor(Math.random()* 255);
+				var b = Math.floor(Math.random()* 255);
+				var c = Math.floor(Math.random()* 255);
+				var d = "rgb("+a+","+b+","+c+")";
+				return d;
+			}
+
+			
+			for(var i = 0; i < 16; i++){
+				var k = document.createElement("div");
+				k.classList.add("square");
+				k.style.width = "120px";
+				k.style.height = "120px";
+				k.addEventListener("mouseover", function(){
+					this.style.background = randColor();
+				})
+				mainContain.appendChild(k);
+			}
+			
+
+		</script>
+	</body>
+</html>
